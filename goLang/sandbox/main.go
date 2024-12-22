@@ -1,4 +1,4 @@
-package main
+package ticTacToe
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 
 func main() {
 	testCase1 := [][]int{{0, 0}, {2, 0}, {1, 1}, {2, 1}, {2, 2}}
-	fmt.Println(tictactoe(testCase1, 3))
+	fmt.Println(Tictactoe(testCase1, 3))
 }
 
 func printBoard(board [][]int) {
@@ -37,7 +37,7 @@ func checkSums(board [][]int) string {
 	return "Pending"
 }
 
-func tictactoe(moves [][]int, n int) string {
+func Tictactoe(moves [][]int, n int) string {
 	boardState := make([][]int, n)
 	for i := range boardState {
 		boardState[i] = make([]int, n)

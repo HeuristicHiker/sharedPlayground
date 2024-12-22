@@ -1,38 +1,54 @@
 package main
 
 import (
-	"fmt"
-	"reflect"
 	"testing"
+
+	"github.com/HeuristicHiker/shared-playground/goLang/ticTacToe"
 )
 
-type testCase struct {
-	in  []int
-	out []int
-}
-
-func TestPlusOne(t *testing.T) {
-	testCases := []testCase{
+func TestTicTacToe(t *testing.T) {
+	tests := []struct {
+		moves [][]int
+		n     int
+		want  string
+	}{
+		// Test case 1: Player A wins
 		{
-			in:  []int{1, 2, 3},
-			out: []int{1, 2, 4},
+			moves: [][]int{{0, 0}, {1, 1}, {0, 1}, {1, 2}, {0, 2}},
+			n:     3,
+			want:  "A",
 		},
+		// Test case 2: Player B wins
 		{
-			in:  []int{4, 3, 2, 1},
-			out: []int{4, 3, 2, 2},
+			moves: [][]int{{0, 0}, {1, 1}, {0, 1}, {1, 2}, {2, 0}, {2, 2}},
+			n:     3,
+			want:  "B",
 		},
+		// Test case 3: Draw
 		{
-			in:  []int{9},
-			out: []int{1, 0},
+			moves: [][]int{{0, 0}, {0, 1}, {0, 2}, {1, 1}, {1, 0}, {1, 2}, {2, 1}, {2, 0}, {2, 2}},
+			n:     3,
+			want:  "Draw",
+		},
+		// Test case 4: Pending
+		{
+			moves: [][]int{{0, 0}, {1, 1}, {0, 1}, {1, 2}},
+			n:     3,
+			want:  "Pending",
+		},
+		// Test case 5: Larger board, Player A wins
+		{
+			moves: [][]int{{0, 0}, {1, 1}, {0, 1}, {1, 2}, {0, 2}, {2, 2}, {0, 3}},
+			n:     4,
+			want:  "A",
 		},
 	}
 
-	for i, testCase := range testCases {
-		fmt.Println("--- Test ", i, " ---")
-		result := plusOne(testCase.in)
-		fmt.Println(result)
-		if !reflect.DeepEqual(result, testCase.out) {
-			t.Errorf("Test case: %d Expected: %v but got: %v", i, testCase.out, result)
-		}
+	for _, tt := range tests {
+		t.Run(tt.want, func(t *testing.T) {
+			if got := ticTacToe.Tictactoe(tt.moves, tt.n); got != tt.want {
+				t.Errorf("Tictactoe(%v, %d) = %v; want %v", tt.moves, tt.n, got, tt.want)
+			}
+		})
 	}
 }
