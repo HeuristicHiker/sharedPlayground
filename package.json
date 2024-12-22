@@ -11,7 +11,8 @@
         "ts:build": "tsc -p tsPlayground",
         "ts:start": "node tsPlayground/dist/index.js",
         "ts-sandbox": "ts-node tsPlayground/src/sandbox/index.ts",
-        "go:sandbox": "go run goLang/sandbox/main.go"
+        "go:sandbox": "go run ./goLang/sandbox/main.go",
+        "go:test": "go test ./goLang/ticTacToe"
     },
     "devDependencies": {
         "typescript": "^4.0.0",
