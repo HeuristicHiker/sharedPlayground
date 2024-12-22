@@ -1,3 +1,3 @@
-module github.com/HeuristicHiker/shared-playground/goLang/ticTacToe
+module ticTacToe
 
 go 1.22.6

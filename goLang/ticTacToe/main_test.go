@@ -1,4 +1,4 @@
-package ticTacToe
+package main
 
 import (
 	"fmt"

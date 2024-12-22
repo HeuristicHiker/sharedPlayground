@@ -1,4 +1,4 @@
-package ticTacToe
+package main
 
 import (
 	"fmt"
@@ -11,8 +11,7 @@ You are given a large integer represented as an integer array digits, where each
 Increment the large integer by one and return the resulting array of digits.
 */
 
-func Run() {
-	fmt.Println("Running Tic Tac Toe!")
+func main() {
 	// plusOne([]int{9})
 	fmt.Println(isMonotonic([]int{1, 2, 2, 4}))
 }
