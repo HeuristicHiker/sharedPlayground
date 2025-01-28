@@ -18,12 +18,53 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
-func removeDup(nums []int) int {
+func removeDup(nums []int) []int {
 	// assume sorted
-	for idx := 1; idx <= len(nums)-1; idx++ {
-		fmt.Println(idx)
+
+	finalLen := len(nums)
+
+	if finalLen <= 1 {
+		return nums
 	}
-	return 0
+
+	last, finder := 0, 0
+
+	for last <= len(nums) {
+		for nums[finder] == nums[last] {
+			finder++
+			if finder == len(nums) {
+				ans := nums[:last+1]
+				fmt.Println("final nums: ", ans)
+				return nums
+			}
+		}
+		nums[last+1] = nums[finder]
+		last++
+	}
+
+	return nums
+}
+
+func removeElement(nums []int, val int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	j := 0 // need this to track the length of the array we care about
+
+	for idx, num := range nums {
+		// fmt.Println(num, val, " ", idx, j)
+		if num != val {
+			if idx != j {
+				nums[idx], nums[j] = nums[j], nums[idx]
+			}
+			j++
+		}
+		fmt.Println("j ", j)
+		fmt.Println(nums)
+	}
+
+	return j
 }
 
 func main() {
@@ -32,10 +73,11 @@ func main() {
 		target int
 	}{
 		{[]int{1, 1, 2}, 2},
+		{[]int{0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2}, 2},
 	}
 
-	currentTest := tests[0]
+	currentTest := tests[1]
 
-	fmt.Println(removeDup(currentTest.nums), 2)
+	fmt.Println(removeElement(currentTest.nums, 2))
 
 }
